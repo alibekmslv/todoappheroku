@@ -1,6 +1,7 @@
 const express = require('express');
 const mongodb = require('mongodb');
 const sanitizeHTML = require('sanitize-html');
+const password = require('./password.js');
 const app = express();
 let db;
 let port = process.env.PORT;
@@ -9,7 +10,9 @@ if (port == null || port == '') {
 }
 
 const connectionString =
-  'mongodb+srv://todoAppUser:newyork5thave@cluster0-mzun4.mongodb.net/TodoApp?retryWrites=true&w=majority';
+  'mongodb+srv://todoAppUser:' +
+  password.mypass +
+  '@cluster0-mzun4.mongodb.net/TodoApp?retryWrites=true&w=majority';
 mongodb.connect(connectionString, { useNewUrlParser: true }, function(
   err,
   client
